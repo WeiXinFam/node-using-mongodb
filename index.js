@@ -1,9 +1,15 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import { Mongoose } from 'mongoose';
+import  mongoose  from 'mongoose';
 
 const app = express();
 const PORT = 4000;
+
+//Setting up MongoDB connection using Mongoose
+mongoose.Promise=global.Promise;
+mongoose.connect('mongodb://localhost:27017/productsdb', {useNewUrlParser: true, useUnifiedTopology: true });
+
+
 
 // bodyparser setup
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,5 +23,3 @@ app.listen(PORT, () =>
     console.log(`Your server is running on port ${PORT}`)
 );
 
-//Setting up MongoDB connection
-mongoose.connect('mongodb://localhost:27017/productsdb', {useNewUrlParser: true, useUnifiedTopology: true });
